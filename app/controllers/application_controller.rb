@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
   def director_details
     the_id = params.fetch("an_id")
-    @the_director = Director.where({ :id => the_id}).at(0)
+    @the_director = Director.where({ :id => the_id }).at(0)
     @filmography = Movie.where({ :director_id => @the_director.id })
     render({ :template => "director_templates/show"})
   end

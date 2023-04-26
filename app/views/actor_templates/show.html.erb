@@ -1,0 +1,92 @@
+    <h1>
+  Actor #<%= @the_actor.id %> details
+</h1>
+
+<a href="/actors" class="btn btn-block btn-outline-secondary">
+  Go back
+</a>
+
+&nbsp;|&nbsp;
+
+<a href="/delete_actor/504" class="btn btn-block btn-outline-secondary">
+  Delete actor
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Name
+  </dt>
+  <dd>
+    <%= @the_actor.name %>
+  </dd>
+
+  <dt>
+    Dob
+  </dt>
+  <dd>
+    <%= @the_actor.dob %>
+  </dd>
+
+  <dt>
+    Bio
+  </dt>
+  <dd>
+    <%= @the_actor.bio %>
+  </dd>
+
+  <dt>
+    Image
+  </dt>
+  <dd>
+    <%= @the_actor.image %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@the_actor.created_at) %>
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@the_actor.updated_at) %>
+  </dd>
+</dl>
+
+<hr>
+
+<h2>Filmography</h2>
+
+<table border="1">
+<% @characters.each do |a_character| %>
+  <tr>
+    <td>
+      <%= a_character.id %>
+    </td>
+    <td>
+      <img src="https://robohash.org/<%= a_character.image %>?set=set4">
+    </td>
+    <td>
+      <%= a_character.title %>
+    </td>
+    <td>
+      <%= a_character.year %>
+    </td>
+    <td>
+      <% d = Actor.where({ :id => a_character.actor_id }).at(0) %>
+      <%= d.name %>
+    </td>
+    <td>
+      <a href="">
+        Show details
+      </a>
+    </td>
+  </tr>
+
+<% end %>
+</table>
